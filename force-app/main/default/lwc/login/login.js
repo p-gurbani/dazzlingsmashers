@@ -1,8 +1,12 @@
-import { LightningElement } from 'lwc';
+import {
+    LightningElement
+} from 'lwc';
 
 import logIn from '@salesforce/apex/DSLoginController.logIn';
 
-import { showToast } from 'c/util';
+import {
+    showToast
+} from 'c/util';
 
 import RESOURCES from '@salesforce/resourceUrl/DazzlingSmashers';
 
@@ -32,7 +36,7 @@ export default class Login extends LightningElement {
 
     setBackground() {
         var root = this.template.querySelector('.root-container');
-        if(root) {
+        if (root) {
             root.setAttribute('style', this.getContainerDivStyle());
         }
     }
@@ -52,17 +56,16 @@ export default class Login extends LightningElement {
             password: this.password
         }).then((result) => {
             try {
-                if(result.isSuccessful) {
-                    showToast(this, LABELS.welcome + result.contactName, '', 'success');
-                    this.dispatchEvent(new CustomEvent('login', { 
+                if (result.isSuccessful) {
+                    this.dispatchEvent(new CustomEvent('login', {
                         detail: {
-                            contactId: result.contactId 
+                            contactId: result.contactId
                         }
                     }));
                 } else {
                     showToast(this, '', LABELS.incorrectCreds, 'error');
                 }
-            } catch(err) {
+            } catch (err) {
                 console.log(err);
             }
         }).catch((err) => {

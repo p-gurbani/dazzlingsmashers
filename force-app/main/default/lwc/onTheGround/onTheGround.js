@@ -1,17 +1,22 @@
-import { LightningElement, api } from 'lwc';
+import {
+    LightningElement,
+    api
+} from 'lwc';
 
 import isPlayerOnTheGround from '@salesforce/apex/OnTheGroundController.isPlayerOnTheGround';
 import setPlayerOnTheGround from '@salesforce/apex/OnTheGroundController.setPlayerOnTheGround';
 
-import { showToast } from 'c/util';
-
-const LABELS = {
-    somethingWentWrong: 'Oops something went terribly wrong, call Pankaj'
-}
+import {
+    showToast
+} from 'c/util';
+import {
+    LABELS
+} from 'c/labels';
 
 export default class OnTheGround extends LightningElement {
     @api contactId;
     isMeOnTheGround = false;
+    labels = LABELS;
 
     connectedCallback() {
         this.checkIfPlayerIsOnTheGround();
@@ -29,13 +34,14 @@ export default class OnTheGround extends LightningElement {
 
     setPlayerOnTheGround() {
         setPlayerOnTheGround({
-            contactId: this.contactId,
-            inOrOut: this.isMeOnTheGround
-        }).then(result => {})
-        .catch(err => {
-            console.log(err);
-            showToast(this, '', LABELS.somethingWentWrong, 'error');
-        });
+                contactId: this.contactId,
+                inOrOut: this.isMeOnTheGround
+            }).then(result => {
+                this.template.querySelector('[data-class="players-on-the-ground"]').getPlayers();
+            })
+            .catch(err => {
+                showToast(this, '', LABELS.somethingWentWrong, 'error');
+            });
     }
 
     onToggleChange(e) {

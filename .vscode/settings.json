@@ -5,5 +5,7 @@
     "**/.sfdx": true
   },
   "editor.formatOnPaste": true,
-  "html.format.contentUnformatted": ""
+  "html.format.contentUnformatted": "",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "HookyQR.beautify"
 }

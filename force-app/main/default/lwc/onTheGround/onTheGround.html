@@ -1,5 +1,20 @@
 <template>
-    <div class="slds-is-absolute toggle-position">
-        <lightning-input type="toggle" checked={isMeOnTheGround} variant="label-hidden" message-toggle-active="I'm in" message-toggle-inactive="I'm out" onchange={onToggleChange}></lightning-input>
+    <div class="app-container">
+        <div class="full-height slds-is-relative slds-var-p-around_small flex flex-column fill-page">
+            <!-- Heading -->
+            <div class="slds-text-heading_medium heading slds-var-p-around_medium slds-text-align_center"><b>{labels.whosOnTheGround}</b></div>
+    
+            <!-- Players on ground list -->
+            <div class="slds-p-horizontal_medium slds-scrollable_y players">
+                <c-players-on-the-ground data-class="players-on-the-ground"></c-players-on-the-ground>
+            </div>
+    
+            <!-- Im in toggle -->
+            <lightning-layout horizontal-align="center" multiple-rows class="toggle">
+                <lightning-layout-item class="slds-var-p-around_small">
+                    <lightning-input type="toggle" checked={isMeOnTheGround} variant="label-hidden" message-toggle-active="I'm in" message-toggle-inactive="I'm out" onchange={onToggleChange}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
     </div>
 </template>

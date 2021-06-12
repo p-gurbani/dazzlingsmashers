@@ -4,14 +4,12 @@
     </template>
 
     <template if:true={isLoggedIn}>
-        <div class="fixed-height slds-scrollable_y slds-is-relative">
-            <template if:true={isHomePage}>
-                Home Page !
-            </template>
-            <template if:true={isOnTheGroundPage}>
-                <c-on-the-ground contact-id={contactId}></c-on-the-ground>
-            </template>
-        </div>
+        <template if:true={isHomePage}>
+            Home Page !
+        </template>
+        <template if:true={isOnTheGroundPage}>
+            <c-on-the-ground contact-id={contactId}></c-on-the-ground>
+        </template>
         <c-bottom-nav ontabchange={onTabChanged}></c-bottom-nav>
     </template>
 </template>
