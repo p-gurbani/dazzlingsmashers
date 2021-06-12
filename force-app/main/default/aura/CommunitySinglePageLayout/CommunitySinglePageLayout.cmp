@@ -1,0 +1,7 @@
+<aura:component implements="forceCommunity:layout" description="Single Page Layout For Communities" access="global">
+    <aura:attribute name="main" type="Aura.Component[]" required="false"></aura:attribute>
+
+    <div class="container">
+        {!v.main}
+    </div>
+</aura:component>

@@ -1,0 +1,24 @@
+.fill-page {
+    width: 100vw;
+    height: 100vh;
+}
+
+.flex-center {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-input {
+    min-width: 220px;
+}
+
+.root-container {
+    background-size: cover!important;
+    background-position: center!important;
+}
+
+.color-white {
+    color: white;
+}
