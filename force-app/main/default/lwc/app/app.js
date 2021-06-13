@@ -1,12 +1,14 @@
-import { LightningElement } from 'lwc';
+import {
+    LightningElement
+} from 'lwc';
 
 export default class App extends LightningElement {
     isLoggedIn = false;
     contactId;
-    currentTab = 'home';
+    currentTab = 'play';
 
-    get isHomePage() {
-        return this.currentTab == 'home';
+    get isPlayPage() {
+        return this.currentTab == 'play';
     }
 
     get isOnTheGroundPage() {

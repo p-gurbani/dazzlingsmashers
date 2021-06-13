@@ -1,14 +1,34 @@
 <template>
-    <lightning-layout multiple-rows class="full-height slds-scrollable_y">
+    <lightning-layout multiple-rows class="scroll-contain slds-scrollable_y">
         <template for:each={playersOnTheGround} for:item="player" for:index="index">
-            <lightning-layout-item class="slds-var-p-vertical_medium player-info slds-var-p-horizontal_small" size="12" key={player.id}>
-                <div class="slds-text-heading_small">{player.name}</div>
+            <lightning-layout-item class="slds-var-p-vertical_medium player-info slds-var-p-horizontal_small" size="12"
+                key={player.id}>
+                <lightning-layout vertical-align="center" horizontal-align="spread">
+                    <lightning-layout-item class="slds-text-heading_small">
+                        <template if:true={player.isCurrentPlayer}>
+                            <b>{player.name}</b> (You)
+                        </template>
+                        <template if:false={player.isCurrentPlayer}>
+                            {player.name}
+                        </template>
+                    </lightning-layout-item>
+                    <lightning-layout-item>
+                        <template if:false={player.isCurrentPlayer}>
+                            <div class="slds-var-p-around_xx-small" data-id={player.id} onclick={onRemovePlayer}>
+                                <lightning-icon class="no-pointer-events" icon-name="utility:close" size="x-small"></lightning-icon>
+                            </div>
+                        </template>
+                    </lightning-layout-item>
+                </lightning-layout>
             </lightning-layout-item>
         </template>
-        <template if:true={noPlayerOnGround}>
-            <div class="full-height slds-align_absolute-center">
-                <div class="slds-text-heading_medium slds-var-p-vertical_medium slds-var-p-horizontal_small slds-text-color_weak">{labels.emptyGround}</div>
-            </div>
-        </template>
     </lightning-layout>
+    <template if:true={noPlayerOnGround}>
+        <div class="full-height slds-align_absolute-center">
+            <div
+                class="slds-text-heading_medium slds-var-p-vertical_medium slds-var-p-horizontal_small slds-text-color_weak">
+                {labels.emptyGround}
+            </div>
+        </div>
+    </template>
 </template>

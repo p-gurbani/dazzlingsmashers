@@ -4,6 +4,7 @@ import {
 } from 'lwc';
 
 import getPlayersOnTheGround from '@salesforce/apex/OnTheGroundController.getPlayersOnTheGround';
+import setPlayerOnTheGround from '@salesforce/apex/OnTheGroundController.setPlayerOnTheGround';
 
 import {
     showToast
@@ -13,6 +14,7 @@ import {
 } from 'c/labels';
 
 export default class PlayersOnTheGround extends LightningElement {
+    @api contactId;
     playersOnTheGround = [];
     labels = LABELS;
 
@@ -28,10 +30,34 @@ export default class PlayersOnTheGround extends LightningElement {
     getPlayers() {
         getPlayersOnTheGround()
             .then(result => {
+                result.forEach(r => {
+                    if (r.id === this.contactId)
+                        r.isCurrentPlayer = true;
+                });
+                console.log(this.contactId, JSON.parse(JSON.stringify(result)));
                 this.playersOnTheGround = result;
             })
             .catch(err => {
                 showToast(this, '', LABELS.somethingWentWrong, 'error');
             })
+    }
+
+    onRemovePlayer(e) {
+        const playerId = e.target.dataset.id;
+        this.setPlayerOnTheGround(playerId, false);
+        this.playersOnTheGround = this.playersOnTheGround.filter(pl => pl.id !== playerId);
+    }
+
+    setPlayerOnTheGround(playerId, inOrOut) {
+        setPlayerOnTheGround({
+                contactId: playerId,
+                inOrOut: inOrOut
+            }).then(result => {
+                this.getPlayers();
+            })
+            .catch(err => {
+                console.log(err);
+                showToast(this, '', LABELS.somethingWentWrong, 'error');
+            });
     }
 }

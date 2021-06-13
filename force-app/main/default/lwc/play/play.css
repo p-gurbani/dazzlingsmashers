@@ -1,0 +1,32 @@
+.app-container {
+    position: fixed;
+    top: 0;
+    bottom: 56px;
+    right: 0;
+    left: 0;
+}
+
+.full-height {
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.flex-column {
+    flex-flow: column;
+}
+
+.flex {
+    display: flex;
+}
+
+.heading {
+    flex: 1;
+}
+
+.body {
+    flex: 10;
+}
+
+.fill-page {
+    height: 100%;
+}

@@ -4,8 +4,8 @@
     </template>
 
     <template if:true={isLoggedIn}>
-        <template if:true={isHomePage}>
-            Home Page !
+        <template if:true={isPlayPage}>
+            <c-play contact-id={contactId}></c-play>
         </template>
         <template if:true={isOnTheGroundPage}>
             <c-on-the-ground contact-id={contactId}></c-on-the-ground>

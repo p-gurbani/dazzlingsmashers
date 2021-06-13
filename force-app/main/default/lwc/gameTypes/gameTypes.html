@@ -1,0 +1,7 @@
+<template>
+    <template for:each={gameTypes} for:item="gameType">
+        <div key={gameType.name} class="game-type slds-var-m-bottom_small" data-id={gameType.name}>
+            <div class="slds-var-p-left_x-large game-type-title"><b>{gameType.label}</b></div>
+        </div>
+    </template>
+</template>

@@ -3,5 +3,13 @@
 }
 
 .player-info {
-    width: 250px;
+    width: 100%;
+}
+
+.scroll-contain {
+    overscroll-behavior: contain;
+}
+
+.no-pointer-events {
+    pointer-events: none;
 }
