@@ -1,0 +1,13 @@
+.no-pointer-events {
+    pointer-events: none;
+}
+
+.iconButtonDiv {
+    border-radius: 16px;
+    background: rgb(250, 250, 250);
+    cursor: pointer;
+}
+
+.iconButtonDiv:hover {
+    background: rgb(240, 240, 240);
+}

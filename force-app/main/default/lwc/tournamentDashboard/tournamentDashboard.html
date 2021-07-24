@@ -1,0 +1,32 @@
+<template>
+    <lightning-layout multiple-rows>
+        <!-- Active/Pending tournament list -->
+        <template for:each={activeOrPendingTournaments} for:item="tn">
+            <lightning-layout-item size="12" key={tn.id}>
+                <c-tournament tournament={tn}></c-tournament>
+            </lightning-layout-item>
+        </template>
+
+        <!-- New Tournament button -->
+        <lightning-layout-item size="12" class="slds-var-m-top_xx-large">
+            <lightning-layout horizontal-align="center">
+                <lightning-layout-item size="9" small-device-size="9" medium-device-size="6" large-device-size="3">
+                    <c-icon-button label="New Tournament" icon-name="utility:add" onbtnclick={onNewTournament}></c-icon-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+
+    </lightning-layout>
+
+
+    <!-- Add players modal -->
+    <c-modal>
+        <span slot="header">
+            Select Players
+        </span>
+            <c-select-players></c-select-players>
+        <span slot="footer">
+            <c-icon-button label="Create" icon-name="utility:magicwand"></c-icon-button>
+        </span>
+    </c-modal>
+</template>

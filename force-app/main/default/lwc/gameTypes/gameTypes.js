@@ -31,12 +31,13 @@ export default class GameTypes extends LightningElement {
     renderedCallback() {
         if (!this.isInitialized) {
             this.setBackgrounds();
+            this.isInitialized = true;
         }
     }
 
     setBackgrounds() {
         this.gameTypes.forEach(gt => {
-            const el = this.template.querySelector(`[data-id="${gt.name}"]`);
+            const el = this.template.querySelector(`[data-name="${gt.name}"]`);
             if (el) {
                 el.setAttribute('style', this.getBackgroundStyle(gt.name));
             }
@@ -45,5 +46,16 @@ export default class GameTypes extends LightningElement {
 
     getBackgroundStyle(gameType) {
         return 'background: url(' + BACKGROUNDS[gameType] + ');';
+    }
+
+    onGameTypeClick(e) {
+        const gameType = e.target.dataset.name;
+        if (gameType) {
+            this.dispatchEvent(new CustomEvent('gametypeclick', {
+                detail: {
+                    gameType: gameType
+                }
+            }));
+        }
     }
 }

@@ -13,3 +13,7 @@
 .no-pointer-events {
     pointer-events: none;
 }
+
+.clickable {
+    cursor: pointer;
+}

@@ -34,7 +34,6 @@ export default class PlayersOnTheGround extends LightningElement {
                     if (r.id === this.contactId)
                         r.isCurrentPlayer = true;
                 });
-                console.log(this.contactId, JSON.parse(JSON.stringify(result)));
                 this.playersOnTheGround = result;
             })
             .catch(err => {

@@ -1,0 +1,33 @@
+<template>
+    <lightning-layout multiple-rows vertical-align="center" class="tournament-container slds-p-around_small">
+        <!-- tournament description -->
+        <lightning-layout-item size="8">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12">
+                    <b>{tournament.tournamentNumber}</b>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    {tournament.status}
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+
+        <!-- status icon -->
+        <lightning-layout-item size="4">
+            <div class="slds-text-align_right">
+                <template if:true={isStatusCompleted}>
+                    <lightning-icon icon-name="utility:check" size="x-small" variant="success"></lightning-icon>
+                </template>
+                <template if:true={isStatusCancelled}>
+                    <lightning-icon icon-name="utility:ban" size="x-small" variant="destructive"></lightning-icon>
+                </template>
+                <template if:true={isStatusPending}>
+                    <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                </template>
+                <template if:true={isStatusActive}>
+                    <lightning-icon icon-name="utility:choice" size="x-small" variant="success"></lightning-icon>
+                </template>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

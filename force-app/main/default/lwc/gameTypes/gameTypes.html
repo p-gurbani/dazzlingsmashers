@@ -1,7 +1,11 @@
 <template>
-    <template for:each={gameTypes} for:item="gameType">
-        <div key={gameType.name} class="game-type slds-var-m-bottom_small" data-id={gameType.name}>
-            <div class="slds-var-p-left_x-large game-type-title"><b>{gameType.label}</b></div>
-        </div>
-    </template>
+    <lightning-layout multiple-rows horizontal-align="center">
+        <template for:each={gameTypes} for:item="gameType">
+            <lightning-layout-item size="12" small-device-size="12" medium-device-size="5" key={gameType.name} class="slds-var-m-bottom_small slds-var-m-horizontal_x-small">
+                <div class="game-type" data-name={gameType.name} onclick={onGameTypeClick}>
+                    <div class="slds-var-p-left_x-large game-type-title"><b>{gameType.label}</b></div>
+                </div>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
 </template>

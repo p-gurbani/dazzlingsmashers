@@ -14,7 +14,7 @@
                     </lightning-layout-item>
                     <lightning-layout-item>
                         <template if:false={player.isCurrentPlayer}>
-                            <div class="slds-var-p-around_xx-small" data-id={player.id} onclick={onRemovePlayer}>
+                            <div class="slds-var-p-around_xx-small clickable" data-id={player.id} onclick={onRemovePlayer}>
                                 <lightning-icon class="no-pointer-events" icon-name="utility:close" size="x-small"></lightning-icon>
                             </div>
                         </template>

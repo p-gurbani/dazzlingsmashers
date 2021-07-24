@@ -15,6 +15,10 @@
   font-size: 14px;
 }
 
+.navbar .navbar-item {
+  cursor: pointer;
+}
+
 .navbar div:hover {
   background: #f1f1f1;
   color: black;

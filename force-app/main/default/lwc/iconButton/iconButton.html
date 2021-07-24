@@ -1,0 +1,12 @@
+<template>
+    <div class="iconButtonDiv" onclick={onButtonClick}>
+        <lightning-layout vertical-align="center" class="no-pointer-events slds-p-around_small">
+            <lightning-layout-item size="4" class="slds-border_right no-pointer-events slds-text-align_center slds-p-around_x-small">
+                <lightning-icon class="no-pointer-events" icon-name={iconName} size="x-small"></lightning-icon>
+            </lightning-layout-item>
+            <lightning-layout-item size="8" class="no-pointer-events slds-text-align_center slds-p-around_x-small">
+                <span class="no-pointer-events slds-text-heading_small">{label}</span>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

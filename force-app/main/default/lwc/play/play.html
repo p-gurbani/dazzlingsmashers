@@ -2,11 +2,16 @@
     <div class="app-container">
         <div class="full-height slds-is-relative slds-var-p-around_small flex flex-column fill-page">
             <!-- Heading -->
-            <div class="slds-text-heading_medium heading slds-var-p-around_medium slds-text-align_center"><b>{labels.letsPlay}</b></div>
+            <div class="slds-text-heading_medium heading slds-var-p-around_medium slds-text-align_center"><b>{heading}</b></div>
 
             <!-- Body -->
             <div class="slds-p-horizontal_medium slds-scrollable_y body">
-                <c-game-types></c-game-types>
+                <template if:true={showGameTypes}>
+                    <c-game-types ongametypeclick={onGameTypeClicked}></c-game-types>
+                </template>
+                <template if:true={isTournamentSelected}>
+                    <c-tournament-dashboard contact-id={contactId} onchangeheading={handleChangeHeading} onreturntomainscreen={handleReturnToMainScreen}></c-tournament-dashboard>
+                </template>
             </div>
         </div>
     </div>
