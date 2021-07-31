@@ -7,6 +7,14 @@ public inherited sharing class CollectionUtil {
         return lst;
     }
 
+    public static List<Id> getIds(List<SObject> records) {
+        List<Id> ids = new List<Id>();
+        for(SObject record: records) {
+            ids.add((Id) record.get('Id'));
+        }
+        return ids;
+    }
+
     public static List<Object> randomizeList(List<Object> lst) {
         Integer currentIndex = lst.size();
         Object temporaryValue;

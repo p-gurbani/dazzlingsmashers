@@ -9,9 +9,9 @@ public with sharing class TournamentDashboardController {
     }
 
     @AuraEnabled
-    public static Tournament buildTournament(){
+    public static Tournament buildTournament(List<Id> playerIds, Integer countPerTeam){
         try {
-            return TournamentBuilder.getActiveOrPendingTournaments(includeOnlyTodays);
+            return TournamentBuilder.buildTournament(new Set<Id>(playerIds), countPerTeam);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

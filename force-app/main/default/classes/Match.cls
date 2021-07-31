@@ -6,8 +6,6 @@ public class Match {
     @AuraEnabled
     public Team winningTeam;
     @AuraEnabled
-    public Tournament parentTournament;
-    @AuraEnabled
     public List<Team> teams;
     @AuraEnabled
     public Integer teamsPerMatch;
@@ -21,7 +19,7 @@ public class Match {
     public static List<Match> wrap(List<Match__c> matches, Tournament tn) {
         List<Match> matchesWrapped = new List<Match>();
         for(Match__c mt : matches) {
-            matchesWrapped.add(wrap(mt).setTournament(tn));
+            matchesWrapped.add(wrap(mt));
         }
         return matchesWrapped;
     }
@@ -32,11 +30,6 @@ public class Match {
 
     public Match setWinningTeam(Team winningTeam) {
         this.winningTeam = winningTeam;
-        return this;
-    }
-
-    public Match setTournament(Tournament tn) {
-        this.parentTournament = tn;
         return this;
     }
 

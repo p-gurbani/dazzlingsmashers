@@ -11,6 +11,10 @@
     border: none;
 }
 
+.modal-height {
+    height: 95% !important;
+}
+
 .modal-footer-custom {
     border: none;
     border-radius: 0px 0px 12px 12px;

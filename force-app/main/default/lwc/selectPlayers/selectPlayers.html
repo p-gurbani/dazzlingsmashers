@@ -1,13 +1,23 @@
 <template>
     <lightning-layout multiple-rows class="scroll-contain slds-scrollable_y">
         <template for:each={players} for:item="player" for:index="index">
-            <lightning-layout-item class="slds-var-p-vertical_medium player-info slds-var-p-horizontal_small" size="12"
+            <lightning-layout-item class="player-selector" size="12"
                 key={player.id}>
-                <lightning-layout vertical-align="center" horizontal-align="spread">
-                    <lightning-layout-item size="12" class="slds-text-heading_small">
+                <div data-id={player.id} class="player-container" onclick={onTogglePlayerSelection}>
+                    <lightning-layout vertical-align="center" class="no-pointer-events slds-var-p-vertical_medium slds-var-p-horizontal_small" horizontal-align="spread">
+                        <lightning-layout-item class="slds-text-heading_small">
                             {player.name}
-                    </lightning-layout-item>
-                </lightning-layout>
+                        </lightning-layout-item>
+                        <lightning-layout-item>
+                            <template if:false={player.isSelected}>
+                                <lightning-icon icon-name="utility:close" variant="error" size="x-small"></lightning-icon>
+                            </template>
+                            <template if:true={player.isSelected}>
+                                <lightning-icon icon-name="utility:check" variant="success" size="x-small"></lightning-icon>
+                            </template>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
             </lightning-layout-item>
         </template>
     </lightning-layout>

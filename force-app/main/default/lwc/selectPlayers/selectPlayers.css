@@ -1,0 +1,11 @@
+.no-pointer-events {
+    pointer-events: none;
+}
+
+.player-container:hover {
+    background: rgb(245, 245, 245);
+}
+
+.player-container {
+    cursor: pointer;
+}

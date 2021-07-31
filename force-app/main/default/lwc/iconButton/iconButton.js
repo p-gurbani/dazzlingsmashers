@@ -6,12 +6,19 @@ import {
 export default class IconButton extends LightningElement {
     @api label;
     @api iconName;
+    @api btnDisabled = false;
 
     onButtonClick(e) {
-        this.dispatchEvent(new CustomEvent('btnclick', {
-            detail: {
-                originalEvent: e
-            }
-        }));
+        if (!this.btnDisabled) {
+            this.dispatchEvent(new CustomEvent('btnclick', {
+                detail: {
+                    originalEvent: e
+                }
+            }));
+        }
+    }
+
+    get containerDivClass() {
+        return this.btnDisabled ? 'iconButtonDiv disabled' : 'iconButtonDiv';
     }
 }

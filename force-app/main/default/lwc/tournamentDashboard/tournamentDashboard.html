@@ -24,9 +24,9 @@
         <span slot="header">
             Select Players
         </span>
-            <c-select-players></c-select-players>
+            <c-select-players onplayerselectionchanged={handlePlayerSelectionChanged}></c-select-players>
         <span slot="footer">
-            <c-icon-button label="Create" icon-name="utility:magicwand"></c-icon-button>
+            <c-icon-button label="Create" icon-name="utility:magicwand" onbtnclick={onTournamentCreate}></c-icon-button>
         </span>
     </c-modal>
 </template>

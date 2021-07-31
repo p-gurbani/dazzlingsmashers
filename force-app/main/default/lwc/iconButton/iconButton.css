@@ -11,3 +11,13 @@
 .iconButtonDiv:hover {
     background: rgb(240, 240, 240);
 }
+
+.iconButtonDiv.disabled:hover {
+    background-color: rgb(0, 0, 0, .2);
+    cursor: default;
+}
+
+.disabled {
+    color: grey !important;
+    background-color: rgb(0, 0, 0, .2);
+}

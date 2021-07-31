@@ -16,7 +16,7 @@ public without sharing class MatchBuilder {
         List<Team_In_Match__c> teamInMatchesToCreate = new List<Team_In_Match__c>();
         Integer index = 0;
         for(Match m : matches) {
-            m.setTeamsPerMatch(teamsPerMatch);
+            m.setTeamsPerMatch();
             Integer teamsAddedToThisMatch = 0;
             while(index < numberOfTeams && teamsAddedToThisMatch < teamsPerMatch) {
                 m.addTeam(teams[index]);

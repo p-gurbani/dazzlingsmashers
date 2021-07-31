@@ -32,7 +32,7 @@ public without sharing class TeamBuilder {
 
     public static List<Team> buildOrRetrieveTeams(List<List<Id>> groupedContactIds) {
         List<Id> allContactIds = (List<Id>)CollectionUtil.unfoldListOfListsOfId(groupedContactIds);
-        List<Team__c> teams = retrieveTeams(allContactIds);
+        List<Team__c> teams = TeamSelector.retrieveTeamsByContactIds(allContactIds);
         Map<List<Id>, Team__c> existingTeamsMap = getExistingTeamsMap(groupedContactIds, teams);
         List<List<Id>> teamsToCreate = new List<List<Id>>();
         for(List<Id> grp : groupedContactIds) {
@@ -68,16 +68,18 @@ public without sharing class TeamBuilder {
         }
 
         INSERT playersInTeamsToCreate;
-        return Team.wrap(retrieveTeams((List<Id>)CollectionUtil.unfoldListOfListsOfId(groupedContactIds)));
+        return Team.wrap(TeamSelector.retrieveTeams(CollectionUtil.getIds(teamsToCreate)));
     }
 
     private static Map<List<Id>, Team__c> getExistingTeamsMap(List<List<Id>> groupedContactIds, List<Team__c> teams) {
         Map<List<Id>, Team__c> existingTeamsMap = new Map<List<Id>, Team__c>();
         for(Team__c t : teams) {
             List<Id> playerContactIds = getPlayerContactIds(t.Players_In_Team__r);
+            Integer playerContactIdSize = playerContactIds.size();
+            Boolean hasPlayers = !playerContactIds.isEmpty();
             for(List<Id> grp : groupedContactIds) {
                 Boolean isTeamMatched = true;
-                if(grp.size() == playerContactIds.size() && !playerContactIds.isEmpty()) {
+                if(grp.size() == playerContactIdSize && hasPlayers) {
                     for(Id contactId : grp) {
                         if(!playerContactIds.contains(contactId)) {
                             isTeamMatched = false;
@@ -100,15 +102,6 @@ public without sharing class TeamBuilder {
             playerContactIds.add(pit.Person__c);
         }
         return playerContactIds;
-    }
-
-    public static List<Team__c> retrieveTeams(List<Id> contactIds) {
-        return [
-            SELECT Id, Name, Team_Name__c,
-            (SELECT Id, Name, Team__c, Person__c FROM Players_In_Team__r)
-            FROM Team__c
-            WHERE Id IN (SELECT Team__c FROM Player_In_Team__c WHERE Person__c IN :contactIds AND Team__c != null)
-        ];
     }
     
 }
